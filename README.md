@@ -14,24 +14,34 @@ Built on the Kvaesitso plugin SDK (`de.mm20.launcher2:plugin-sdk`) from the
 - Tapping a result opens the served page — public plans at `/p/{slug}`, private ones
   through the service's own authenticated route.
 - Archived plans are hidden unless you ask for them in the settings.
+- **Demo mode**: out of the box it serves built-in sample plans, so a fresh install is
+  never a dead search box. Turn it off once you are signed in.
 
-## Setup
+## Install
 
-1. Build and install:
+Grab the APK from the [releases page](https://github.com/Jemo69/Plugin-Slop-Plans/releases)
+and install it, then:
 
-   ```bash
-   ./gradlew :app:installDebug
-   ```
-
-2. In Kvaesitso: **Settings → Plugins → Slop Plans → enable**, then select it as a file
+1. In Kvaesitso: **Settings → Plugins → Slop Plans → enable**, then select it as a file
    search provider.
-
-3. Open the plugin settings from the plugin detail page and sign in:
-
+2. Open the plugin settings from the plugin detail page and sign in:
    - **Server** — `https://plans.your-domain.com`. The default
      `http://10.0.2.2:8000` reaches a backend running on your development machine from
      the Android emulator; on a real device use your LAN IP, e.g. `http://192.168.1.20:8000`.
    - **Email + password** — exchanged for an API key, which is all the plugin stores.
+3. Turn **Demo mode** off in the options.
+
+### From source
+
+```bash
+./gradlew :app:installDebug
+```
+
+### If the server is unreachable
+
+The plugin names the actual failure rather than saying "cannot reach the server" for
+everything: DNS, refused connection, TLS rejection, timeout, blocked plain HTTP. Tap
+**Test connection** in the settings to see which one it is.
 
 ## Authentication
 
