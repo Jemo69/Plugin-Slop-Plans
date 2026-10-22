@@ -72,11 +72,11 @@ class SlopApiClient(
 ) {
     companion object {
         /**
-         * 10.0.2.2 is the host machine as seen from the Android emulator, which makes
-         * this the most useful default for local development. Override it in the
-         * plugin settings with your LAN IP or your deployed URL.
+         * The deployed Slop plan service. Override it in the plugin settings if you
+         * run your own instance - a LAN address such as http://192.168.1.20:8000 works
+         * too, and the release build allows plain http for exactly that case.
          */
-        const val DEFAULT_BASE_URL = "http://10.0.2.2:8000"
+        const val DEFAULT_BASE_URL = "https://slop-plans.vercel.app"
         private const val TAG = "SlopApi"
     }
 

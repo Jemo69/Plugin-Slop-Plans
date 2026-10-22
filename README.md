@@ -25,9 +25,9 @@ and install it, then:
 1. In Kvaesitso: **Settings → Plugins → Slop Plans → enable**, then select it as a file
    search provider.
 2. Open the plugin settings from the plugin detail page and sign in:
-   - **Server** — `https://plans.your-domain.com`. The default
-     `http://10.0.2.2:8000` reaches a backend running on your development machine from
-     the Android emulator; on a real device use your LAN IP, e.g. `http://192.168.1.20:8000`.
+   - **Server** — defaults to `https://slop-plans.vercel.app`. Point it at your own
+     instance if you run one: `http://192.168.1.20:8000` works too, and the release
+     build allows plain http for exactly that case.
    - **Email + password** — exchanged for an API key, which is all the plugin stores.
 3. Turn **Demo mode** off in the options.
 

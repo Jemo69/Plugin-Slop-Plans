@@ -15,8 +15,8 @@ android {
         targetSdk = 37
 
         // versionCode must increase with every release, versionName is what users see.
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,13 +78,13 @@ android {
 }
 
 // Forward the live-check server URL into the test JVM. Gradle's -D flags set a
-// property on the daemon, not on the forked test process, so it has to be handed over
-// explicitly.
+// system property on the daemon, not a Gradle property and not a property of the
+// forked test process, so read it directly and hand it over explicitly.
+val liveCheckUrl: String = (project.findProperty("slop.live.url") as String?)
+    ?: System.getProperty("slop.live.url")
+    ?: ""
 tasks.withType<Test>().configureEach {
-    systemProperty(
-        "slop.live.url",
-        providers.gradleProperty("slop.live.url").orElse("").get(),
-    )
+    systemProperty("slop.live.url", liveCheckUrl)
 }
 
 dependencies {

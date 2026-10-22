@@ -55,8 +55,10 @@
     <string name="settings_error_refused">Nothing is listening on that port. Is the server running, and is the port right?</string>
     <string name="settings_error_timeout">The server did not answer in time. Check your network.</string>
     <string name="settings_error_status">The server answered with an unexpected status: %1$s</string>
-    <string name="settings_error_cleartext">Android blocked this plain http:// request. Release builds require https://.</string>
+    <string name="settings_error_cleartext">Android blocked this plain http:// request. Use https:// or allow cleartext traffic.</string>
     <string name="settings_error_unknown">Something went wrong connecting: %1$s</string>
     <string name="settings_error_generic">Something went wrong. Please try again.</string>
+    <string name="settings_error_server">The server refused the request: %1</string>
+    <string name="settings_warning_cleartext">This address uses plain http, so your traffic is not encrypted. Prefer https://</string>
     <string name="settings_connected">Server reachable.</string>
 </resources>

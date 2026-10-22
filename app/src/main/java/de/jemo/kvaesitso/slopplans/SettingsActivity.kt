@@ -56,6 +56,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import de.jemo.kvaesitso.slopplans.api.FailureReason
+import de.jemo.kvaesitso.slopplans.api.SlopApiException
+import de.jemo.kvaesitso.slopplans.api.classify
 import de.jemo.kvaesitso.slopplans.api.SlopApiClient
 import de.jemo.kvaesitso.slopplans.api.SlopAuthException
 import kotlinx.coroutines.launch
@@ -207,7 +209,7 @@ class SettingsActivity : AppCompatActivity() {
                 val auth = client.login(email, password)
                 val apiKey = auth.apiKey?.takeIf { it.isNotBlank() }
                 if (apiKey == null) {
-                    state = SignInState.Error
+                    state = SignInState.Error("The server accepted the login but returned no API key")
                     return@launch
                 }
                 val account = auth.email ?: email
@@ -221,10 +223,19 @@ class SettingsActivity : AppCompatActivity() {
                 password = ""
                 signedInAs = account
                 state = SignInState.SignedIn(account)
+            } catch (e: SlopAuthException) {
+                // 401/403: the server answered, the credentials are wrong.
+                Log.w(TAG, "Sign in rejected by $baseUrl", e)
+                state = SignInState.InvalidCredentials
+            } catch (e: SlopApiException) {
+                // The server answered with an error of its own (500, 422, ...).
+                Log.e(TAG, "Sign in failed against $baseUrl", e)
+                state = SignInState.Error(e.message)
             } catch (e: Exception) {
-                Log.e(TAG, "Sign in failed", e)
-                state = if (e is SlopAuthException) SignInState.InvalidCredentials
-                else SignInState.Error
+                // The server never answered: wrong address, no route, blocked http.
+                val reason = e.classify()
+                Log.e(TAG, "Sign in could not reach $baseUrl ($reason)", e)
+                state = SignInState.Unreachable(reason, e.message)
             } finally {
                 client.close()
             }
@@ -280,7 +291,7 @@ private sealed interface SignInState {
     data object Reachable : SignInState
     data class Unreachable(val reason: FailureReason, val detail: String?) : SignInState
     data object InvalidCredentials : SignInState
-    data object Error : SignInState
+    data class Error(val detail: String?) : SignInState
     data class SignedIn(val email: String) : SignInState
 }
 
@@ -406,8 +417,8 @@ private fun SignInSection(
                     success = false,
                 )
 
-                SignInState.Error -> FeedbackLine(
-                    stringResource(R.string.settings_error_generic),
+                is SignInState.Error -> FeedbackLine(
+                    stringResource(R.string.settings_error_server, state.detail.orEmpty()),
                     success = false,
                 )
 
