@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shown in the launcher/app list -->
+    <string name="app_name">Slop Plans</string>
+
+    <!-- Plugin package metadata -->
+    <string name="plugin_package_name">Slop Plans</string>
+    <string name="plugin_package_description">Search your Slop plans from the launcher</string>
+    <string name="plugin_author">Slop</string>
+
+    <!-- This specific plugin instance -->
+    <string name="plugin_name">Slop Plans</string>
+    <string name="plugin_description">Searches the plans in your Slop account</string>
+
+    <!-- Plugin state, shown on the plugin detail page -->
+    <string name="plugin_state_no_account">Sign in to your Slop account to use this plugin.</string>
+    <string name="plugin_state_unreachable">Could not reach the Slop server. Check the server address and sign in again.</string>
+    <string name="plugin_state_ready">Signed in as %1$s</string>
+    <string name="plugin_state_ready_no_email">your account</string>
+
+    <!-- Settings activity -->
+    <string name="settings_title">Slop Plans settings</string>
+    <string name="settings_step_server">Step %1$d</string>
+    <string name="settings_server_hint">The address of your Slop server:</string>
+    <string name="settings_server_label">Server URL</string>
+    <string name="settings_server_help">Use your LAN address on a real device, for example http://192.168.1.20:8000</string>
+
+    <string name="settings_step_signin">Step %1$d</string>
+    <string name="settings_signin_hint">Sign in. Your password is used once and never stored — only the API key is kept on this device.</string>
+    <string name="settings_email_label">Email</string>
+    <string name="settings_password_label">Password</string>
+    <string name="settings_signin_button">Sign in</string>
+    <string name="settings_signing_in">Signing in…</string>
+
+    <string name="settings_options">Options</string>
+    <string name="settings_demo_mode">Demo mode</string>
+    <string name="settings_demo_mode_summary">Show built-in sample plans instead of searching your account. Turn this off once you are signed in.</string>
+    <string name="plugin_state_demo">Showing sample plans. Sign in to search your own.</string>
+    <string name="settings_include_archived">Include archived plans</string>
+    <string name="settings_include_archived_summary">Archived plans are hidden by default.</string>
+    <string name="settings_max_results">Maximum results</string>
+    <string name="settings_signout">Sign out</string>
+    <string name="settings_signout_confirm">Sign out and delete the stored API key?</string>
+    <string name="settings_signout_confirm_yes">Sign out</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_test_connection">Test connection</string>
+
+    <!-- Feedback -->
+    <string name="settings_signed_in">Signed in as %1$s</string>
+    <string name="settings_error_invalid_credentials">That email and password did not work.</string>
+    <string name="settings_error_unreachable">Could not reach that server. Check the address and your network.</string>
+    <!-- One message per failure cause. "Unreachable" on its own cannot be acted on. -->
+    <string name="settings_error_dns">That host name does not resolve. Check the address and spelling.</string>
+    <string name="settings_error_tls">The certificate was rejected. Use a trusted HTTPS certificate, or plain http:// on a debug build.</string>
+    <string name="settings_error_refused">Nothing is listening on that port. Is the server running, and is the port right?</string>
+    <string name="settings_error_timeout">The server did not answer in time. Check your network.</string>
+    <string name="settings_error_status">The server answered with an unexpected status: %1$s</string>
+    <string name="settings_error_cleartext">Android blocked this plain http:// request. Release builds require https://.</string>
+    <string name="settings_error_unknown">Something went wrong connecting: %1$s</string>
+    <string name="settings_error_generic">Something went wrong. Please try again.</string>
+    <string name="settings_connected">Server reachable.</string>
+</resources>

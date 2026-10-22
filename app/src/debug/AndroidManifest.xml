@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Debug-only manifest overlay.
+
+  Android blocks cleartext (plain http://) traffic by default for anything targeting
+  API 28+, which this plugin does. That default is correct and stays in place for
+  release builds — see the main manifest, which ships no cleartext allowance at all.
+
+  It does, however, break local development: `http://10.0.2.2:8000` to reach a backend
+  on your workstation from the emulator, or `http://192.168.x.x:8000` to reach one over
+  the LAN, are both refused before the request ever leaves the device.
+
+  This overlay re-enables cleartext for debug builds only, so those two workflows
+  work out of the box. Release builds are unaffected and stay HTTPS-only.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:usesCleartextTraffic="true"
+        tools:replace="android:usesCleartextTraffic" />
+
+</manifest>

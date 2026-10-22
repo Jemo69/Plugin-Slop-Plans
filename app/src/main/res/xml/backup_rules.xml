@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Which files Android includes in cloud backup / device transfer.
+  Your API key lives in userdata.json, so exclude it: backups are a common leak path.
+-->
+<full-backup-content>
+    <exclude domain="file" path="datastore/userdata.json" />
+</full-backup-content>

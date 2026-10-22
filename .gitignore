@@ -1,0 +1,39 @@
+### Android ###
+.gradle/
+build/
+app/build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+
+### Logs ###
+*.log
+
+### APK / AAB ###
+*.apk
+*.aab
+*.ap_
+*.dex
+
+### IDE ###
+*.iml
+.idea/
+.kotlin/sessions/
+.navigation/
+*.ipr
+*.swp
+
+### Signing - never commit these ###
+*.jks
+*.keystore
+keystore.properties
+google-services.json
+
+### OS ###
+.DS_Store
+Thumbs.db
+*~
+
+### Releases ###
+app/release
