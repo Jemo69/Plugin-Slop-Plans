@@ -84,6 +84,7 @@ class LiveServerCheck {
             val client = SlopApiClient(baseUrl = base, apiKey = { key })
             try {
                 val report = StringBuilder()
+                report.appendLine("server:  $base")
 
                 // 4. The health probe the settings screen uses.
                 val probe = client.probe()
