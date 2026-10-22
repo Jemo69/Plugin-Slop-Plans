@@ -32,7 +32,9 @@ import java.net.URL
  */
 class LiveServerCheck {
 
-    // Blank means "not configured": the Gradle build forwards an empty string when no\n    // server was given, and an empty URL would fail the check instead of skipping it.\n    private val serverUrl: String? = System.getProperty("slop.live.url")?.takeIf { it.isNotBlank() }
+    // Blank means "not configured": the Gradle build forwards an empty string when no
+    // server was given, and an empty URL would fail the check instead of skipping it.
+    private val serverUrl: String? = System.getProperty("slop.live.url")?.takeIf { it.isNotBlank() }
 
     @Test
     fun `the plugin client and the server agree`() {
